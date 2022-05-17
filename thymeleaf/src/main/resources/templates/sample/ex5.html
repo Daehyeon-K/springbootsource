@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Thymeleaf 예제4</h1>
+	<table>
+		<tr>
+			<td>MID</td>
+			<td>MNAME</td>
+			<td>REGDATE</td>
+		</tr>
+		<tr th:each="dto:${list}">
+			<td th:text="${dto.mid}"></td>
+			<td th:text="${dto.mname}"></td>
+			<td th:text="${ #dates.format(dto.regdate, 'yyyy-MM-dd') }"></td>
+		</tr>
+	</table>
+	<br />
+	<hr />
+	
+	<!-- mid가 u0001인 경우 secret라는 단어로 변경해서 출력하기 -->
+	<table>
+		<tr>
+			<td>MID</td>
+			<td>MNAME</td>
+			<td>REGDATE</td>
+		</tr>
+		<tr th:each="dto:${list}">
+			<td th:text="${dto.mid == 'u0001'?'SECRET':'dto.mid'}"></td>
+			<td th:text="${dto.mname}"></td>
+			<td th:text="${ #dates.format(dto.regdate, 'yyyy-MM-dd') }"></td>
+		</tr>
+	</table>
+	<br />
+	<hr />
+	
+	<!-- mid가 u0001이면 MODIFY로 변경해서 출력, 아니면 VIEW로 변경해서 출력 : if, else
+	
+		th:if => if문 구현
+		th:if ~ unless => if ~ else문까지 구현 (unless가 if와 연결된 구조는 아니라서 조건을 다시 써줘야 함) (unless는 그 자체로 부정 의미가 되어버림 뒤에 조건이)
+	 -->
+	<table>
+		<tr>
+			<td>MID</td>
+			<td>MNAME</td>
+			<td>REGDATE</td>
+		</tr>
+		<tr th:each="dto:${list}">
+			<td th:if="${dto.mid}">
+				<a href="/MODIFY" th:if="${dto.mid == 'u0001'}">MODIFY</a>
+				<p th:unless="${dto.mid == 'u0001'}">VIEW</p>
+			</td>
+			<td th:text="${dto.mname}"></td>
+			<td th:text="${ #dates.format(dto.regdate, 'yyyy-MM-dd') }"></td>
+		</tr>
+	</table>
+	<br />
+	<hr />
+	
+</body>
+</html>

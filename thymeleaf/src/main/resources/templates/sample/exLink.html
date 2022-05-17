@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<ul>
+		<!-- Thymeleaf 이용한 링크 처리. Thymeleaf에선 @{절대경로 or 상대경로}로 링크처리 -->
+		<li><a th:href="@{http://localhost:8081/sample/ex1}">ex1</a></li>
+		<li><a th:href="@{/sample/ex1}">ex1</a></li>
+		<li><a th:href="@{ex1}">ex1</a></li>
+		<!-- 기존엔 <a href="ex8?param1=aaa&param2=bbb">링크</a>
+			 여기선 param1=' ' 해서 따옴표 이용해서 넣어주기 -->
+		<li><a th:href="@{ex8(param1='aaa',param2='bbb')}">ex8</a></li>
+	</ul>
+</body>
+</html>

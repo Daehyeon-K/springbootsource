@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<!-- header 조각 포함 : ~{/경로/파일명::fragment명} -->
+	<div th:insert="~{/fragments/header::header}"></div>
+	<!-- 소스 보면 원래 태그 살리며 그대로 div -->
+	
+	<h1>Contents 영역</h1>
+	
+	<!-- footer 조각 포함 : ~{/경로/파일명::fragment명} -->
+	<div th:replace="~{/fragments/footer::footer}"></div>
+	<!-- 소스 보면 원래 태그 날리고 h1 -->
+	
+</body>
+</html>

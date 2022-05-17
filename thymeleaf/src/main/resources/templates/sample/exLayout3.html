@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- first, second 영역만 지정 -->
+
+<!-- 현재 문서에 있는 것 함수 느낌으로 만든 fragment에 인자로 전달 : ~{this::id}, 꼭 id 아니어도 됨 -->
+<th:block th:replace="~{/fragments/fragment3::target(~{this::#first}, ~{this::#second})}">
+	<ul id="first">
+		<li>AAA</li>	
+		<li>BBB</li>	
+		<li>CCC</li>	
+	</ul>
+	<ul id="second">
+		<li>111</li>	
+		<li>222</li>	
+		<li>333</li>	
+	</ul>
+
+</th:block>

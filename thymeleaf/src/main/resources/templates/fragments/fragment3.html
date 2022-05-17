@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 스타일 적용하려면 head에 넣으면 안되고, fragment 안쪽에 넣기. 
+		 만약에 head에 넣고 싶으면 이걸 위로 올리는 다른 방식 있음. -->
+	<div th:fragment="target(first,second)">
+		<style>
+			.c1{
+				background-color:red;			
+			}
+			.c2{
+				background-color:blue;			
+			}
+		</style>
+		<div class="c1">
+			<th:block th:replace="${first}"></th:block>
+		</div>
+		<div class="c2">
+			<th:block th:replace="${second}"></th:block>
+		</div>
+	</div>
+</body>
+</html>

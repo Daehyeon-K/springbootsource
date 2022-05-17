@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- 일부분이 아닌 Fragment 문서 전체 불러오기 : fragment명 부분이 없어지니까 경로, 파일명까지만 하면 됨 -->
+	<div style="border:1px solid blue">
+		<th:block th:replace="~{/fragments/fragment2}"></th:block>
+	</div>
+	
+	<!-- header 조각 포함 : ~{/경로/파일명::fragment명} -->
+	<h1>Layout - Part 1</h1>
+	<div th:replace="~{fragments/fragment1::part1}"></div>
+	<br/>
+	<hr/>
+	<h1>Layout - Part 2</h1>
+	<div th:replace="~{fragments/fragment1::part2}"></div>
+	<br/>
+	<hr/>
+	<h1>Layout - Part 3</h1>
+<!-- 	<div th:replace="~{fragments/fragment1::part3}"></div> -->
+	<!-- th:block => 어차피 replace할거면 태그를 사용하지 않고 thymeleaf 불러서 사용하는 방법 -->
+	<th:block th:replace="~{fragments/fragment1::part3}"> </th:block>
+	
+</body>
+</html>
