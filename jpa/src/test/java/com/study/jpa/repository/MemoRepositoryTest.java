@@ -1,5 +1,6 @@
 package com.study.jpa.repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -86,42 +87,65 @@ public class MemoRepositoryTest {
 //	}
 	
 	// 페이징
-	@Test
-	public void testPaging() {
-		
-		// 페이징 처리 : findAll(Pageable)
-		// Pageable : 페이지 처리에 필요한 정보를 전달하는 객체 (springfarework.data.domain 인터페이스 부르기)
-		
-		// 페이지 번호는 0번 부터 시작
-		// 1페이지 데이터 10개 가져오기 같은 개념
-		
-		// Sort 없을 때 ascending 개념일 때
+//	@Test
+//	public void testPaging() {
+//		
+//		// 페이징 처리 : findAll(Pageable)
+//		// Pageable : 페이지 처리에 필요한 정보를 전달하는 객체 (springfarework.data.domain 인터페이스 부르기)
+//		
+//		// 페이지 번호는 0번 부터 시작
+//		// 1페이지 데이터 10개 가져오기 같은 개념
+//		
+//		// Sort 없을 때 ascending 개념일 때
 //		Pageable pageable = PageRequest.of(0, 10); 
 //		Page<Memo> result = repository.findAll(pageable);
-		
-		// Sort 넣어서 (springfarework.data.domain 인터페이스 부르기)
-		Sort sort = Sort.by("mno").descending();
-		Pageable pageable = PageRequest.of(0, 10, sort);
-		
-		Page<Memo> result = repository.findAll(pageable);
-		
-		System.out.println(result);
-		
-		System.out.println("------------------------------");
-		
-		System.out.println("총 페이지 수 : "+result.getTotalPages());
-		System.out.println("전체 게시물 수 : "+result.getTotalElements());
-		System.out.println("현재 페이지 번호 (0부터 시작) : "+result.getNumber());
-		System.out.println("페이지 당 데이터 개수 : "+result.getSize());
-		System.out.println("다음 페이지 존재 여부 : "+result.isFirst());
-		
-		System.out.println("------------------------------");
-		
-		for(Memo memo : result.getContent()) {
-			System.out.println(memo);
-		}
-	}
+//		
+//		// Sort 넣어서 (springfarework.data.domain 인터페이스 부르기)
+//		Sort sort = Sort.by("mno").descending();
+//		Pageable pageable = PageRequest.of(0, 10, sort);
+//		
+//		Page<Memo> result = repository.findAll(pageable);
+//		
+//		System.out.println(result);
+//		
+//		System.out.println("------------------------------");
+//		
+//		System.out.println("총 페이지 수 : "+result.getTotalPages());
+//		System.out.println("전체 게시물 수 : "+result.getTotalElements());
+//		System.out.println("현재 페이지 번호 (0부터 시작) : "+result.getNumber());
+//		System.out.println("페이지 당 데이터 개수 : "+result.getSize());
+//		System.out.println("다음 페이지 존재 여부 : "+result.isFirst());
+//		
+//		System.out.println("------------------------------");
+//		
+//		for(Memo memo : result.getContent()) {
+//			System.out.println(memo);
+//		}
+//	}
 	
 	// 이런 것 말고 동적 SQL 등 없는 것은 직접 만들어야 하고, 또 굳이 아니더라도 위에 것들 말고도 메소드 많음
+		
+	// find QueryMethod
+//	@Test
+//	public void testQuery() {
+//		List<Memo> list =  repository.findByMnoBetweenOrderByMnoDesc(40L, 80L);
+//		
+//		list.forEach(memo -> {
+//			System.out.println(memo);
+//		});
+//	}
+	
+	// find QueryMethod
+	@Test
+	public void testQuery2() {
+		
+		Pageable pageable = PageRequest.of(0, 10, Sort.by("mno").descending());
+		
+		Page<Memo> result =  repository.findByMnoBetween(40L, 80L, pageable);
+		
+		result.getContent().forEach(memo -> {
+			System.out.println(memo);
+		});
+	}
 	
 }
