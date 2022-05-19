@@ -18,8 +18,10 @@ public class PageRequestDTO {
 	
 	private int page; // 현재 페이지 번호
 	private int size; // 페이지 내 보여줄 목록 수
-//	private String ; // 검색 타입
-//	private String ; // 검색어
+	
+	// 검색 정보
+	private String type; // 검색 타입
+	private String keyword; // 검색어
 	
 	public PageRequestDTO() {
 		this.page=1;
